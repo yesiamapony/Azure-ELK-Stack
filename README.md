@@ -7,10 +7,10 @@ These files have been tested and used to generate a live ELK deployment on Azure
 
 Included Files -
 
-Ansible\  - Playbook files
-Diagrams\ - Network Diagram
-Images\   - Images from previous weeks
-Linux\    - Shell scripts from previous weeks
+Ansible  | Playbook files
+Diagrams | Network Diagram
+Images   | Images from previous weeks
+Linux    | Shell scripts from previous weeks
 
 
 This document contains the following details:
