@@ -37,7 +37,7 @@ _TODO: What aspect of security do load balancers protect? What is the advantage 
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the filesystem and system metrics.
 
-Changes to the local file system is handled by Filebeat and Metricbeat records system and services metrics.  
+	Changes to the local file system is handled by Filebeat and Metricbeat records system and services metrics.  
 
 The configuration details of each machine may be found below.
 
@@ -62,7 +62,7 @@ Machines within the network can only be accessed by the Ansible Container within
 Which machine did you allow to access your ELK VM? What was its IP address?
 
 	ELK VM is accessed via SSH from the Ansible Container within the Jump Box VM.
-		Jumpbox IP: 10.0.0.4
+	Jumpbox IP: 10.0.0.4
 
 A summary of the access policies in place can be found in the table below.
 
@@ -104,12 +104,8 @@ This ELK server is configured to monitor the following machines
 
 We have installed the following Beats on these machines:
 
-	10.0.0.5, 10.0.0.6, 10.0.0.8
-
-
-The beats that were installed were:
-	
 	Filebeat & Metricbeat
+
 
 These Beats allow us to collect the following information from each machine:
 - _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
@@ -142,7 +138,7 @@ _TODO: Answer the following questions to fill in the blanks:_
 
 	Machines are defined in groups set in the /etc/ansible/hosts file. Playbooks are then set to run on specific groups based on the 'hosts:' header element. Then playbook is executed with the following command.
 
-	>	ansible-playbook playbook.yml 
+	> ansible-playbook playbook.yml 
 
 
 - _Which URL do you navigate to in order to check that the ELK server is running?
