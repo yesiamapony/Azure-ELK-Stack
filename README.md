@@ -10,8 +10,8 @@ These files have been tested and used to generate a live ELK deployment on Azure
 Included Files:
 - ./Ansible  -Playbook files
 - ./Diagrams -Network Diagram
-- ./Images   -Images from previous weeks
-- ./Linux    -Shell scripts from previous weeks
+- ./Images   -Extra images
+- ./Linux    -Shell scripts
 
 
 This document contains the following details:
@@ -30,15 +30,12 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 
 Load balancing ensures that the application will be highly available, in addition to restricting traffic to the network.
 
-_TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?:
+Load balancers are used to distribute traffic to multiple obfuscated servers that share the same or similar tasks. This ensures a level of redundancy in the case of a server getting overloaded or completely falling over. 
 
-	Load balancers are used to distribute load to multiple obfuscated servers that share the same/similar tasks. This ensures that there exists some redundancy in the case of a server getting overloaded or completely falling over. 
+The advantage of using a jumpbox is that it limits access to the virtual network infrastructure to a single point of entry, that can be locked down to the required level of security. 
 
-	The advantage of using a jumpbox is that it limits access to the virtual network infrastructure to a single point of entry, that can be locked down to the required level of security. 
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the filesystem via Filebeat, and system metrics using Metricbeat.
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the filesystem and system metrics.
-
-	Changes to the local file system is handled by Filebeat and Metricbeat records system and services metrics.  
 
 The configuration details of each machine may be found below.
 
@@ -48,21 +45,18 @@ The configuration details of each machine may be found below.
 | WEB-1    | DVWA     | 10.0.0.5   | Linux/Ubuntu     |
 | WEB-2    | DVWA     | 10.0.0.6   | Linux/Ubuntu     |
 | WEB-3    | DVWA     | 10.0.0.8   | Linux/Ubuntu     |
-| ELK      | ELKSTACK | 10.1.0.4   | Linux/Ubuntu     |
+| ELK      | ELKStack | 10.1.0.4   | Linux/Ubuntu     |
 
-### Access Policies
+
+---------- Access Policies ---------- 
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the Jump Box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses: 
-	
-	HOME IP ADDRESS (xxx.xxx.xxx.xxx) - Hidden	
+Only the Jump Box machine can accept connections from the Internet, and only from your home IP.
 
 Machines within the network can only be accessed by the Ansible Container within the Jump Box VM
 
-Which machine did you allow to access your ELK VM? What was its IP address?
-
-	ELK VM is accessed via SSH from the Ansible Container within the Jump Box VM.
+ELK VM is accessed via SSH from the Ansible Container within the Jump Box VM.
 	Jumpbox IP: 10.0.0.4
 
 A summary of the access policies in place can be found in the table below.
