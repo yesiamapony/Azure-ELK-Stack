@@ -24,7 +24,7 @@ This document contains the following details:
 - How to Use the Ansible Build
 
 
-### Description of the Topology
+---------- Description of the Topology ---------- 
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
@@ -35,7 +35,6 @@ Load balancers are used to distribute traffic to multiple obfuscated servers tha
 The advantage of using a jumpbox is that it limits access to the virtual network infrastructure to a single point of entry, that can be locked down to the required level of security. 
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the filesystem via Filebeat, and system metrics using Metricbeat.
-
 
 The configuration details of each machine may be found below.
 
@@ -54,9 +53,9 @@ The machines on the internal network are not exposed to the public Internet.
 
 Only the Jump Box machine can accept connections from the Internet, and only from your home IP.
 
-Machines within the network can only be accessed by the Ansible Container within the Jump Box VM
+Machines within the network can only be accessed by the Ansible Container within the Jump Box VM.
 
-ELK VM is accessed via SSH from the Ansible Container within the Jump Box VM.
+The ELK VM is accessed via SSH from the Ansible Container within the Jump Box VM.
 	Jumpbox IP: 10.0.0.4
 
 A summary of the access policies in place can be found in the table below.
@@ -69,17 +68,12 @@ A summary of the access policies in place can be found in the table below.
 | WEB-2    | No                  | 10.0.0.4             |
 | WEB-3    | No                  | 10.0.0.4             |
 
-### Elk Configuration
+---------- Elk Configuration---------- 
 
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-
-What is the main advantage of automating configuration with Ansible?
-
-	The main advantage of using Ansible is scalability, as any further virtual machines that need provisioning/configuration can be rapidly set up via playbooks. 
+Ansible was used to deploy and configure these virtual machines which makes the system scaleable and can be rapidly expanded at ease using Ansible playbooks.
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-	
+
 	* - Download and install Docker
 	* - Download and install Docker Module/software
 	* - Increase virtual memory
@@ -88,56 +82,45 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output]
-	(Images/docker_ps_output.png)
+![docker](https://github.com/yesiamapony/Azure-ELK-Stack/blob/main/Images/docker_ps_output.png)
 
-### Target Machines & Beats
-This ELK server is configured to monitor the following machines
+--------- Target Machines & Beats ---------
 
-	10.0.0.5, 10.0.0.6, 10.0.0.8
+This ELK server is configured to monitor the following machines using the Filebeat and Metricbeat
 
+	Web-1: 10.0.0.5 
+	Web-2: 10.0.0.6
+	Web-3: 10.0.0.7
 
-We have installed the following Beats on these machines:
+--------- Filebeat / Metricbeat ---------
 
-	Filebeat & Metricbeat
+Filebeat - Filebeat is a client side agent that can forward log files from monitored locations on the file system that have been specified by the user. For example pushing access logs from an Apache server running on the system Filebeat is installed on. 
 
+Metric Beat - Metric beat is a client side agent that monitors and forwards metrics about the host and services that are installed on that system. For example CPU Load / Memory Usage etc. 
 
-These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
-	
-	Filebeat - Filebeat is a client side agent that can forward log files from monitored locations on the file system that have been specified by the user. For example pushing access logs from an Apache server running on the system Filebeat is installed on. 
-
-	Metric Beat - Metric beat is a client side agent that monitors and forwards metrics about the host and services that are installed on that system. For example CPU Load / Memory Usage etc. 
-
-### Using the Playbook
+--------- Use of Playbooks ---------
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
 
-- Copy the playbooks file to the Ansible control node.
+- Copy the playbook file to the Ansible control node. (via git) 
 
-- Update the hosts file to include the IP addresses of the machines the playbook is to be run on. 
+- Ensure the hosts file lists the correct machine/IP's 
 
 - Run the playbook, and navigate to the receiving VM to check that the installation worked as expected.
 
+The 4 playbooks included are listed below, they need to be copied to the /etc/ansible directory
 
-_TODO: Answer the following questions to fill in the blanks:_
-
-Which file is the playbook? Where do you copy it?_
-
-	Elk setup playbook: ELK-playbook01.yml 
-	DVWA setup playbook: DVWA-playbook.yml
-	Beats setup playbook: Beats-playbook.yml
-	Copy to the /etc/ansible/ directory
-
-_Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
+Elk setup playbook: ELK-playbook01.yml 
+DVWA setup playbook: DVWA-playbook.yml
+Beats setup playbook: Beats-playbook.yml
 	
-	Machines are defined in groups set in the /etc/ansible/hosts file. Playbooks are then set to run on specific groups based on the 'hosts:' header element. Then playbook is executed with the following command.
-	> ansible-playbook playbook.yml 
+	
+Machines are defined in groups set in the /etc/ansible/hosts file. Playbooks are then set to run on specific groups based on the 'hosts:' header element. The playbook is then executed with the following command.
 
+	> ansible-playbook playbook_filename.yml 
 
-- _Which URL do you navigate to in order to check that the ELK server is running?
-
+If everything is running correctly you should be able to see Kibana running using the following URL. 
 	http://137.135.14.100:5601/app/kibana#/home
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
@@ -148,7 +131,7 @@ _As a **Bonus**, provide the specific commands the user will need to run to down
  	3) Execute playbooks
 
 	-----
-	Git clone repo containing project files
+	git clone https://github.com/yesiamapony/Azure-ELK-Stack.git
 	cp ./*.yml /etc/ansible/
 	mkdir /etc/ansible/files
 	cp ./files/* /etc/ansible/files/
