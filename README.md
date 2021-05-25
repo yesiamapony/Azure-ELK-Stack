@@ -98,7 +98,10 @@ Filebeat - Filebeat is a client side agent that can forward log files from monit
 
 Metric Beat - Metric beat is a client side agent that monitors and forwards metrics about the host and services that are installed on that system. For example CPU Load / Memory Usage etc. 
 
+
+
 --------- Use of Playbooks ---------
+
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
@@ -109,7 +112,7 @@ SSH into the control node and follow the steps below:
 
 - Run the playbook, and navigate to the receiving VM to check that the installation worked as expected.
 
-The 4 playbooks included are listed below, they need to be copied to the /etc/ansible directory
+The 3 playbook files included are listed below, they need to be copied to the /etc/ansible directory
 
 Elk setup playbook: ELK-playbook01.yml 
 DVWA setup playbook: DVWA-playbook.yml
