@@ -114,9 +114,11 @@ SSH into the control node and follow the steps below:
 
 The 3 playbook files included are listed below, they need to be copied to the /etc/ansible directory
 
-Elk setup playbook: ELK-playbook01.yml 
-DVWA setup playbook: DVWA-playbook.yml
-Beats setup playbook: Beats-playbook.yml
+	Elk setup playbook: ELK-playbook01.yml
+	
+	DVWA setup playbook: DVWA-playbook.yml
+	
+	Beats setup playbook: Beats-playbook.yml
 	
 	
 Machines are defined in groups set in the /etc/ansible/hosts file. Playbooks are then set to run on specific groups based on the 'hosts:' header element. The playbook is then executed with the following command.
