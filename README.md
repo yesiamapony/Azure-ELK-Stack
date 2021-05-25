@@ -128,7 +128,7 @@ Machines are defined in groups set in the /etc/ansible/hosts file. Playbooks are
 If everything is running correctly you should be able to see Kibana running using the following URL. 
 	http://137.135.14.100:5601/app/kibana#/home
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+---------- Specific commands for setup ----------
 
 	Summary: 
 	1) Clone Repo
